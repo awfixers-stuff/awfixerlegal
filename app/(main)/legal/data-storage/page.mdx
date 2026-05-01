@@ -1,9 +1,94 @@
 # Data Storage Policy
 
-This policy outlines AWFixer&apos;s approach to data storage across our ecosystem.
+This policy describes how AWFixer stores, processes, and protects your data. We are transparent about our infrastructure choices, retention practices, and the technical safeguards that protect your information. If you have questions that this document doesn't answer, contact us at privacy@awfixer.com.
 
-*This is a placeholder. The full data storage policy will be added here.*
+## Overview
 
----
+This Data Storage Policy sits alongside our Privacy Policy and Terms of Service. While the Privacy Policy explains what data we collect and why, this document focuses on the physical and logical storage of that data. It covers where data lives, how long we keep it, how we encrypt it, and what happens when you delete your account.
+
+This policy applies to all AWFixer services, including Chat, Grip, and Workspace. Some services have additional storage specifics. Where that is the case, we link to those pages in the relevant sections.
+
+## Data Storage and Residency
+
+Our primary production infrastructure runs on Amazon Web Services (AWS) in the United States (us-east-1 and us-west-2). This is where most customer data is stored and processed by default.
+
+For customers who require EU data residency, we offer hosting within AWS regions located in the European Union. When EU hosting is enabled, your data is stored and processed entirely within those regions. You can select your preferred region during account setup or by contacting your account representative where supported.
+
+We do not store customer data in regions outside the US or EU without explicit customer consent or a specific contractual requirement.
+
+## Data We Store
+
+We store three broad categories of data:
+
+1. **Account data.** This includes your email address, name, profile information, authentication credentials managed through Clerk, and billing records handled by Stripe. This data is necessary to provide and administer your account.
+
+2. **Customer content.** This includes anything you create, upload, or generate while using our services. Examples include conversation history in Chat, automation configurations in Grip, documents and files in Workspace, and any files you upload. You retain ownership of this content. We store it solely to provide the service you requested.
+
+3. **Service-generated data.** This includes system logs, error reports, analytics metadata, and operational metrics. We use this data to maintain service health, diagnose issues, and improve performance. Where possible, we aggregate or pseudonymize this data.
+
+4. **AI inputs and outputs.** When you use AI-powered features in Chat or other services, your prompts and the generated responses are processed and stored according to the terms outlined in our service-specific policies. AI providers do not retain your data for model training unless explicitly disclosed.
+
+## Encryption
+
+All customer data is encrypted at rest using AES-256. Data in transit is protected by TLS 1.2 or higher. We enforce secure cipher suites and regularly review our TLS configuration.
+
+Encryption keys are managed through cloud provider key management services. We follow the principle of least privilege, limiting key access to essential personnel and automated systems. Keys are rotated on a regular schedule and immediately if compromise is suspected.
+
+## Backup and Recovery
+
+We perform automated backups of production databases daily. Backups are encrypted and stored across separate availability zones to protect against regional outages.
+
+- **Backup retention:** 30 days from the date of creation.
+- **Recovery testing:** We perform recovery drills regularly to confirm our ability to restore data accurately and within defined timeframes.
+- **Backup scope:** All customer content and account data is included in standard backup procedures. Service-generated logs may have shorter retention based on operational needs.
+
+## Data Retention
+
+We retain customer data for as long as your account is active. This allows you to access historical content, maintain configurations, and resume work without interruption.
+
+If you delete your account:
+
+- Your data is permanently erased from production systems within 30 days.
+- Encrypted backups may retain your data for up to 60 days from the deletion date.
+- After that period, no recoverable copies remain in our systems.
+
+In certain circumstances, we may be required to retain data beyond these periods. This includes situations involving legal holds, regulatory investigations, or unresolved disputes. If this applies to your account, we will notify you unless prohibited by law.
+
+## Data Deletion
+
+You can request deletion of specific content at any time through the service interface. For full account deletion, contact us at privacy@awfixer.com or use the account deletion option in your settings.
+
+When deletion is initiated:
+
+- Active data is removed from production databases.
+- Search indexes are updated to exclude deleted content.
+- Backups are purged according to the schedule above.
+- Some anonymized or aggregated data may be retained for analytics and reporting purposes, but it will no longer be linked to your identity.
+
+## Cross-Border Transfers
+
+When data is transferred from the European Union to the United States or other jurisdictions, we rely on Standard Contractual Clauses (SCCs) approved by the European Commission. These clauses ensure that transferred data receives a level of protection consistent with EU data protection law.
+
+We assess our subprocessors and their data handling practices to confirm that appropriate safeguards are in place. Our current subprocessors are listed in our Privacy Policy.
+
+## Shared Responsibility
+
+Security is a shared responsibility. Here is how we divide it:
+
+**AWFixer secures:**
+
+- The infrastructure, network, and physical environment.
+- Encryption at rest and in transit.
+- Backup integrity and recovery processes.
+- Access controls for our internal systems.
+
+**You are responsible for:**
+
+- Keeping your account credentials secure.
+- Managing access controls within your organization, including team permissions and role assignments.
+- Classifying and handling sensitive data appropriately before uploading it.
+- Ensuring your use of our services complies with applicable laws and regulations.
+
+If you suspect unauthorized access to your account, contact us immediately at security@awfixer.com.
 
 Last updated: April 30, 2026

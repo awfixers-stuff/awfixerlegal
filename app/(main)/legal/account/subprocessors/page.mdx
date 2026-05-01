@@ -1,8 +1,23 @@
-# Subprocessors — Account
+# Subprocessors for Account
 
-This page describes how **Account** specifically handles subprocessor management.
+This page lists subprocessors used specifically by **AWFixer Account**. For shared infrastructure subprocessors that support all AWFixer services, see our [main Subprocessors page](/legal/subprocessors).
 
-*This is a placeholder. The full Account-specific subprocessors policy will be added here.*
+## Account-specific subprocessors
+
+| Subprocessor | Purpose | Location | Data Categories |
+|--------------|---------|----------|-----------------|
+| Stripe | Subscription billing, invoicing, and tax | United States | Payment details, billing address, tax IDs |
+| Avalara | Tax calculation and compliance | United States | Billing address, transaction amounts |
+| Persona | Identity verification and KYC | United States | Government ID documents, selfies |
+| Loops | Marketing and product communication | United States | Email addresses, preference data |
+
+## Data handling notes
+
+Account services handle billing, identity, and communication data. Payment card details are processed directly by Stripe and are not stored on AWFixer systems. Identity verification data is retained only as long as required by applicable law and our compliance obligations.
+
+## Shared infrastructure
+
+Account also relies on our [core infrastructure subprocessors](/legal/subprocessors) for hosting, monitoring, authentication, and delivery.
 
 ---
 

@@ -1,9 +1,39 @@
-# Data Storage Policy — Account
+# Data Storage Policy for Account
 
-This page describes how **Account** specifically handles data storage.
+This page describes how **Account** specifically handles data storage and processing. For general provisions including encryption, backups, and retention policies, see our [Data Storage Policy](/legal/data-storage).
 
-*This is a placeholder. The full Account-specific data storage policy will be added here.*
+## Authentication Data
 
----
+AWFixer uses Clerk to manage authentication, user sessions, and identity verification.
+
+- Passwords are hashed using industry-standard algorithms before storage. We never store plaintext passwords.
+- Session tokens are issued and validated through Clerk. Session metadata is retained to support security monitoring and session revocation.
+- Multi-factor authentication (MFA) configurations, when enabled, are stored and managed within Clerk.
+- If you disable MFA or delete your account, associated authentication data is removed according to Clerk's data handling procedures and our retention schedule.
+
+## Billing Records
+
+Billing and payment processing is handled by Stripe.
+
+- We do not store full credit card numbers or bank account details on AWFixer infrastructure.
+- Stripe retains payment method tokens, transaction history, and billing addresses according to their own security and compliance standards.
+- We store billing records such as subscription status, invoice history, and payment confirmations in our database. These records are encrypted at rest.
+- Billing data is retained for the lifetime of your account plus any period required by applicable tax or financial regulations.
+
+## API Keys
+
+You can generate API keys to access AWFixer services programmatically.
+
+- API keys are hashed before storage. Only the key prefix is retained in plaintext for identification.
+- We cannot recover a full API key once it has been displayed to you. If a key is lost, you must generate a new one.
+- Keys can be revoked at any time from your account settings. Revoked keys are invalidated immediately and removed from our systems within 24 hours.
+
+## Identity Data Location
+
+Your identity data, including email, name, and profile information, is stored in our primary database. This data is encrypted at rest and transmitted securely.
+
+- Identity data is synchronized with Clerk for authentication purposes.
+- Changes to your profile are reflected across services in near real time.
+- If you request account deletion, identity data is purged from production systems within 30 days and from backups within 60 days.
 
 Last updated: April 30, 2026

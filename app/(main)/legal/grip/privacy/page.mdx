@@ -1,8 +1,30 @@
-# Privacy Policy — Grip
+# Privacy Policy for Grip
 
-This page describes how **Grip** specifically handles privacy and data protection.
+This page describes how **Grip** specifically handles privacy and data protection. For general provisions including contact information, your rights, and how to exercise them, see our [Privacy Policy](/legal/privacy).
 
-*This is a placeholder. The full Grip-specific privacy policy will be added here.*
+## Data Ingestion and Webhooks
+
+Grip collects data through webhooks, API connections, and direct user input. You control what data flows into Grip through your integrations and capture workflows.
+
+Webhook payloads are processed in real time. We store the data you configure Grip to retain. Data that is not marked for retention is discarded after processing. You can adjust retention settings per integration from your Grip dashboard.
+
+## Capture Workflows
+
+Capture workflows let you define rules for how incoming data is handled. You decide which fields to extract, how to transform them, and where to store the results.
+
+Workflow configurations themselves are stored with your workspace. The data processed by these workflows is stored according to your retention settings. Workspace administrators can view and modify all capture workflows.
+
+## Integration Data
+
+When you connect Grip to third-party services, we store authentication tokens and configuration data needed to maintain the connection. We encrypt these tokens at rest and never expose them in logs or user-facing interfaces.
+
+The content pulled from third-party integrations is treated as customer content under our main Privacy Policy. We access this data only to provide the Grip service to you.
+
+## Export and Import
+
+You can export data from Grip at any time. Exports include the raw data and any transformations applied by your workflows. Export files are generated on demand and are available for download for 48 hours.
+
+When you import data into Grip, the imported content is stored under your workspace and is subject to the same retention and security policies as data collected through other means.
 
 ---
 

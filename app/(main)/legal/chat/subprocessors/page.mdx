@@ -1,8 +1,24 @@
-# Subprocessors — Chat
+# Subprocessors for Chat
 
-This page describes how **Chat** specifically handles subprocessor management.
+This page lists subprocessors used specifically by **AWFixer Chat**. For shared infrastructure subprocessors that support all AWFixer services, see our [main Subprocessors page](/legal/subprocessors).
 
-*This is a placeholder. The full Chat-specific subprocessors policy will be added here.*
+## Chat-specific subprocessors
+
+| Subprocessor | Purpose | Location | Data Categories |
+|--------------|---------|----------|-----------------|
+| OpenAI | AI model hosting and inference | United States | Chat messages, conversation history |
+| Anthropic | AI model hosting and inference | United States | Chat messages, conversation history |
+| Pinecone | Vector search and embedding storage | United States | Message embeddings, search queries |
+| Algolia | Search indexing and query serving | United States | Chat content, user search queries |
+| Upstash Redis | Real-time messaging and session state | United States | Active sessions, presence data |
+
+## Data handling notes
+
+Chat services process message content and metadata to provide AI-assisted responses. Customer messages may be sent to AI providers for the sole purpose of generating responses. We do not use Customer Data to train third-party AI models without explicit consent.
+
+## Shared infrastructure
+
+Chat also relies on our [core infrastructure subprocessors](/legal/subprocessors) for hosting, monitoring, authentication, and delivery.
 
 ---
 

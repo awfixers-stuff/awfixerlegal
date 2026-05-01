@@ -1,8 +1,23 @@
-# Subprocessors — Workspace
+# Subprocessors for Workspace
 
-This page describes how **Workspace** specifically handles subprocessor management.
+This page lists subprocessors used specifically by **AWFixer Workspace**. For shared infrastructure subprocessors that support all AWFixer services, see our [main Subprocessors page](/legal/subprocessors).
 
-*This is a placeholder. The full Workspace-specific subprocessors policy will be added here.*
+## Workspace-specific subprocessors
+
+| Subprocessor | Purpose | Location | Data Categories |
+|--------------|---------|----------|-----------------|
+| Uploadcare | File upload handling and content delivery | United States | Uploaded files, file metadata |
+| Mux | Video processing and streaming | United States | Video files, playback analytics |
+| Tiptap | Collaborative rich-text editing infrastructure | Germany | Document content, cursor positions |
+| Y-Sweet | Real-time collaboration and CRDT sync | United States | Document deltas, operational transforms |
+
+## Data handling notes
+
+Workspace stores files, documents, and collaborative content on behalf of customers. File content is encrypted at rest. Collaborative editing data is processed in real time and retained according to the workspace retention settings configured by the customer.
+
+## Shared infrastructure
+
+Workspace also relies on our [core infrastructure subprocessors](/legal/subprocessors) for hosting, monitoring, authentication, and delivery.
 
 ---
 

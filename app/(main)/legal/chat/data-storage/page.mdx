@@ -1,9 +1,37 @@
-# Data Storage Policy — Chat
+# Data Storage Policy for Chat
 
-This page describes how **Chat** specifically handles data storage.
+This page describes how **Chat** specifically handles data storage and processing. For general provisions including encryption, backups, and retention policies, see our [Data Storage Policy](/legal/data-storage).
 
-*This is a placeholder. The full Chat-specific data storage policy will be added here.*
+## AI and LLM Processing
 
----
+Chat uses large language models (LLMs) to generate responses. When you submit a prompt, that prompt and the resulting response are processed through our AI infrastructure.
+
+**Provider retention.** Our AI providers do not retain your prompts or responses for model training or any other purpose. We have contractual agreements in place that explicitly prohibit retention beyond what is necessary to deliver the response to you.
+
+**Zero retention.** Once a response is delivered, the underlying provider does not keep a copy of the prompt or output. Your conversation history is stored only within AWFixer systems, not with the LLM provider.
+
+## Embeddings and Vector Storage
+
+To support features like semantic search and context-aware responses, Chat may store embeddings of your conversation content. These embeddings are mathematical representations of text, not the text itself.
+
+- Embeddings are stored in a separate vector database within our infrastructure.
+- They are linked to your account and workspace for retrieval purposes.
+- When you delete a conversation or your account, associated embeddings are removed.
+
+## Conversation Data Retention
+
+Your conversation history is retained while your account is active. You can delete individual conversations or your entire history at any time through the Chat interface.
+
+- Deleted conversations are removed from production systems within 24 hours.
+- Backups may retain conversation data for up to 30 days.
+- If your account is deleted, all conversation data is handled according to our general [Data Storage Policy](/legal/data-storage).
+
+## Prompt and Response Handling
+
+Prompts and responses pass through our API layer before reaching the LLM provider. During this transit:
+
+- All data is encrypted using TLS 1.2 or higher.
+- We do not log the full content of prompts or responses in system logs.
+- We may log metadata such as request timestamps, token counts, and error codes for operational monitoring.
 
 Last updated: April 30, 2026

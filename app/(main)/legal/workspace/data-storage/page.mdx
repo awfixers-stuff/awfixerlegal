@@ -1,9 +1,43 @@
-# Data Storage Policy — Workspace
+# Data Storage Policy for Workspace
 
-This page describes how **Workspace** specifically handles data storage.
+This page describes how **Workspace** specifically handles data storage and processing. For general provisions including encryption, backups, and retention policies, see our [Data Storage Policy](/legal/data-storage).
 
-*This is a placeholder. The full Workspace-specific data storage policy will be added here.*
+## Collaborative Documents
 
----
+Workspace stores documents that you and your team create, edit, and share. These documents may contain text, embedded media, comments, and version history.
+
+- Document content is stored in our primary database and object storage.
+- Version history is retained to support undo, rollback, and audit needs.
+- Older versions are subject to the same encryption and backup policies as current content.
+- You can delete individual versions or entire documents at any time.
+
+When a document is deleted, it is removed from production systems within 24 hours and from backups within 30 days.
+
+## Shared Workspaces
+
+Workspace is organized around shared spaces that contain documents, files, and team configurations.
+
+- Each workspace is logically separated from others at the data layer.
+- Workspace members can access only the workspaces they have been invited to.
+- Role-based permissions control who can view, edit, or administer workspace content.
+- If a workspace is deleted, all associated documents, files, and member permissions are permanently removed.
+
+## File Uploads
+
+You can upload files to Workspace for storage and collaboration. These files may include images, PDFs, spreadsheets, and other document types.
+
+- Uploaded files are stored in encrypted object storage.
+- File metadata (name, size, type, upload date) is stored in our database.
+- We do not scan file contents for purposes other than generating thumbnails or previews you request.
+- Files inherit the access controls of the workspace or document they are attached to.
+- Deleting a file removes it from object storage and updates all associated references.
+
+## Team-Level Data Segregation
+
+Workspace enforces data segregation at the team level. This means:
+
+- Data from one workspace is not accessible to members of another workspace unless explicitly shared.
+- Search indexes are scoped to the workspaces a user belongs to.
+- Audit logs record access and modification events per workspace for administrative review.
 
 Last updated: April 30, 2026

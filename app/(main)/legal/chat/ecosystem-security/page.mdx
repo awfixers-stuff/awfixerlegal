@@ -1,8 +1,36 @@
-# Ecosystem Security — Chat
+# Ecosystem Security - Chat
 
-This page describes how **Chat** specifically handles ecosystem security.
+This page describes security measures specific to **Chat**. For shared infrastructure security, see our [Ecosystem Security page](/legal/ecosystem-security).
 
-*This is a placeholder. The full Chat-specific ecosystem security policy will be added here.*
+## AI Model Security
+
+Chat sends your prompts to large language model providers to generate responses. We treat this data with the same rigor as any other information passing through AWFixer.
+
+We use model providers that contractually guarantee zero data retention. Your prompts and responses do not persist on their systems after the request completes. Providers may not train their models on your data. This commitment is in our agreements and we monitor compliance.
+
+## Prompt Isolation
+
+Each prompt gets processed in an isolated request context. One conversation cannot access the context of another. Session state remains tied to your specific thread and does not leak across boundaries.
+
+We do not use customer prompts to improve our own systems or to train models unless you explicitly opt in. Default behavior preserves full confidentiality.
+
+## Data Segregation
+
+Chat data is logically segregated by tenant. Your workspace conversations exist in a separate data partition from other customers. Database queries enforce tenant scoping at the application layer. Even within shared infrastructure, your data never mixes with another organization’s data.
+
+Administrative tools that access Chat data require explicit authorization and get logged. Engineers may only access Chat content for legitimate operational reasons, such as debugging a reported issue, and only with approval.
+
+## LLM Provider Security
+
+We evaluate providers on security practices before integration. We review their encryption standards, access controls, incident response capabilities, and data handling policies. We do not integrate with providers who cannot meet our baseline requirements.
+
+Provider API keys are stored in encrypted secrets managers and rotated regularly. We monitor provider API usage for anomalies that could indicate misuse.
+
+## Content Filtering
+
+Chat includes automated content filtering to detect and block attempts to generate harmful, illegal, or abusive material. This filtering operates on prompts and responses in real time.
+
+Filtering decisions are automated and do not involve human review of your content in normal operation. Logs of filtered content are retained only as needed for abuse investigation and model safety improvement, and are subject to the same encryption and access controls as all other AWFixer data.
 
 ---
 

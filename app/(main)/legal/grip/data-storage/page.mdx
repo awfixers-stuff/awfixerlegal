@@ -1,9 +1,42 @@
-# Data Storage Policy — Grip
+# Data Storage Policy for Grip
 
-This page describes how **Grip** specifically handles data storage.
+This page describes how **Grip** specifically handles data storage and processing. For general provisions including encryption, backups, and retention policies, see our [Data Storage Policy](/legal/data-storage).
 
-*This is a placeholder. The full Grip-specific data storage policy will be added here.*
+## Webhook Payloads
 
----
+Grip receives webhook payloads from third-party services that you connect. These payloads contain event data that triggers automations within your workspace.
+
+- Webhook payloads are stored in our infrastructure to enable automation replay, debugging, and audit trails.
+- Payloads are encrypted at rest using AES-256.
+- You can configure payload retention per automation. Default retention is 30 days.
+- After the retention period expires, payloads are permanently deleted.
+
+## Automation Data
+
+Automations in Grip consist of triggers, actions, and the data that flows between them. We store:
+
+- **Automation configurations.** The logic and structure of your automations, including connected services and field mappings.
+- **Execution history.** Records of when automations ran, their status, and any errors encountered.
+- **Intermediate data.** Data temporarily held during multi-step automation execution.
+
+Execution history is retained for 90 days to support debugging and auditing. Intermediate data is deleted immediately after the automation completes or fails.
+
+## Integration Configurations
+
+When you connect a third-party service to Grip, we store the configuration required to maintain that connection. This includes:
+
+- OAuth tokens and refresh tokens (encrypted).
+- API endpoint settings and custom headers.
+- Selected scopes and permissions.
+
+Tokens are encrypted and stored in a secure vault. If you disconnect an integration, we delete the associated tokens and configuration data within 24 hours.
+
+## Data Ingestion and Processing Pipelines
+
+Data entering Grip passes through ingestion pipelines that validate, transform, and route it to the appropriate automation. During processing:
+
+- Data is handled in memory where possible to minimize persistent storage.
+- When persistence is required for reliability, data is written to encrypted temporary storage and deleted after processing.
+- Logs capture pipeline health and errors but do not include full payload content.
 
 Last updated: April 30, 2026

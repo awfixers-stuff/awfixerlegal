@@ -1,8 +1,23 @@
-# Subprocessors — Grip
+# Subprocessors for Grip
 
-This page describes how **Grip** specifically handles subprocessor management.
+This page lists subprocessors used specifically by **AWFixer Grip**. For shared infrastructure subprocessors that support all AWFixer services, see our [main Subprocessors page](/legal/subprocessors).
 
-*This is a placeholder. The full Grip-specific subprocessors policy will be added here.*
+## Grip-specific subprocessors
+
+| Subprocessor | Purpose | Location | Data Categories |
+|--------------|---------|----------|-----------------|
+| Pipedream | Workflow automation and webhook orchestration | United States | Event payloads, automation logs |
+| ngrok | Secure tunneling for webhook development and delivery | United States | Webhook request data |
+| Segment | Customer data platform and event routing | United States | Behavioral events, integration metadata |
+| WorkOS | Directory sync and enterprise SSO provisioning | United States | User identity attributes, group memberships |
+
+## Data handling notes
+
+Grip processes webhook payloads and integration events on behalf of customers. Event data is retained only as long as necessary for delivery, retry, and debugging purposes. Customers control which integrations and destinations are active within their workspace.
+
+## Shared infrastructure
+
+Grip also relies on our [core infrastructure subprocessors](/legal/subprocessors) for hosting, monitoring, authentication, and delivery.
 
 ---
 

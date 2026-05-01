@@ -1,8 +1,88 @@
 # Ecosystem Security
 
-This policy outlines AWFixer&apos;s approach to ecosystem security.
+Your data is yours. We built AWFixer to keep it that way. Our security program follows a defense-in-depth approach: multiple independent layers of protection, each designed to contain and limit the impact of any single failure.
 
-*This is a placeholder. The full ecosystem security policy will be added here.*
+## Overview
+
+AWFixer handles sensitive data every day. We take that responsibility seriously. Our security philosophy rests on three principles: transparency about what we do and why, concrete technical controls rather than vague promises, and continuous improvement driven by regular testing and review.
+
+We do not claim perfection. No one can. What we promise is a rigorous, disciplined approach to protecting your information, backed by clear processes and open communication when issues arise.
+
+## Infrastructure Security
+
+We host AWFixer on AWS in multiple availability zones. This means if one data center experiences problems, traffic fails over automatically to another location without service interruption.
+
+Our network architecture uses strict segmentation. Production systems live in isolated network segments with no direct internet exposure. Only explicitly authorized services can communicate across segment boundaries.
+
+All public-facing traffic routes through Cloudflare, which provides firewall filtering and DDoS protection. Malicious traffic gets blocked before it reaches our infrastructure. We monitor network patterns continuously and adjust rules in response to emerging threats.
+
+## Data Encryption
+
+We encrypt data at rest using AES-256. Every database volume, backup, and static asset receives this treatment without exception. Encryption keys live in AWS KMS, where they rotate regularly and never leave the hardware security module boundary.
+
+Data in transit uses TLS 1.2 or higher. We enforce this minimum version and reject older protocols. Internal service-to-service communication also travels over encrypted channels, even within our private network.
+
+We do not store encryption keys alongside the data they protect. Access to key material requires explicit authorization and leaves an audit trail.
+
+## Access Control
+
+Role-based access control governs every system at AWFixer. Engineers receive the minimum permissions needed for their specific work. Privileges get reviewed quarterly and revoked immediately when no longer needed.
+
+All internal systems require multi-factor authentication. Password-only access is not permitted under any circumstance. We use hardware security keys where supported and time-based one-time codes as fallback.
+
+Administrative access gets logged comprehensively. We record who accessed what, when, and from where. These logs feed into automated monitoring that flags unusual patterns for investigation.
+
+The principle of least privilege applies to automation as well. Our deployment pipelines, monitoring agents, and background jobs each receive narrowly scoped credentials that limit the damage from any compromise.
+
+## Application Security
+
+We follow a secure development lifecycle. Every code change undergoes review by at least one engineer other than the author. We use automated scanning to catch common vulnerabilities before they reach production.
+
+Dependency monitoring runs continuously. When a security issue appears in a library we use, we assess impact and patch within a timeline appropriate to severity. Critical vulnerabilities get addressed within 24 hours.
+
+We run penetration tests regularly against our production environment by independent security researchers. Findings get triaged, fixed, and verified before closing. We also maintain a bug bounty program to encourage responsible disclosure from the broader security community.
+
+## Incident Response
+
+We maintain a documented incident response plan that defines roles, communication channels, and escalation paths. The plan gets reviewed and exercised at least annually.
+
+Our infrastructure runs 24/7 monitoring with automated alerting. Anomalies trigger investigation by on-call engineers within minutes, not hours. We classify incidents by severity and respond accordingly.
+
+If we confirm a breach affecting customer data, we notify affected customers within 72 hours. This notification includes what happened, what data was involved, and what steps we are taking. We also publish a post-incident review internally to identify improvements and prevent recurrence.
+
+## Vulnerability Disclosure
+
+We welcome security research. If you discover a vulnerability in AWFixer, please report it to security@awfixer.com. Include enough detail for us to reproduce the issue and a secure way to reach you.
+
+We commit to responding to reports within 72 hours and to keeping you informed as we investigate. We ask that you give us reasonable time to fix the issue before disclosing it publicly. We will not take legal action against researchers who act in good faith, respect user privacy, and follow responsible disclosure practices.
+
+## Employee Security
+
+Every AWFixer employee undergoes a background check before starting. All employees complete security training during onboarding and refresh it annually. The training covers phishing awareness, secure handling of credentials, and incident reporting.
+
+Access gets revoked automatically on termination. We disable accounts, rotate shared credentials, and reclaim company devices within hours of departure. Personal devices may not access production systems under any circumstance.
+
+We enforce device management policies on all company equipment. Disk encryption, automatic screen locking, and remote wipe capability are mandatory.
+
+## Compliance
+
+We maintain industry-standard security practices across our infrastructure, development processes, and operations. Enterprise customers may request additional security documentation under a non-disclosure agreement.
+
+We do not publicly assert specific compliance certifications. What matters is what we actually do, not what paperwork we hold. We are happy to discuss our controls in detail with customers who need assurance.
+
+## Shared Responsibility
+
+Security is a partnership. We secure the infrastructure, application, and operations that make AWFixer possible. You are responsible for the security of your account and how you use our services.
+
+Specifically, you should:
+
+- Use strong, unique passwords and enable multi-factor authentication on your AWFixer account.
+- Manage access carefully within your organization. Remove users promptly when they no longer need access.
+- Classify your data appropriately and avoid uploading information you are not permitted to share.
+- Use our APIs securely. Store API keys in secrets managers, not in code repositories or shared documents.
+- Report suspicious activity to us immediately.
+
+We will meet our responsibilities with discipline and transparency. We ask that you meet yours with equal care.
 
 ---
 

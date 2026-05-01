@@ -1,8 +1,38 @@
-# Ecosystem Security — Grip
+# Ecosystem Security - Grip
 
-This page describes how **Grip** specifically handles ecosystem security.
+This page describes security measures specific to **Grip**. For shared infrastructure security, see our [Ecosystem Security page](/legal/ecosystem-security).
 
-*This is a placeholder. The full Grip-specific ecosystem security policy will be added here.*
+## Webhook Security
+
+Grip processes webhooks from external services to trigger automations. We verify every webhook payload using cryptographic signature verification. If the signature does not match, we reject the request and log the failure.
+
+Each webhook endpoint uses a unique secret. Secrets are generated with sufficient entropy and stored encrypted. We rotate secrets on request and during any suspected compromise.
+
+Webhook payloads are validated against expected schemas before processing. Unexpected or malformed payloads get discarded. We limit payload size to prevent resource exhaustion attacks.
+
+## Automation Sandboxing
+
+Grip automations run in isolated execution environments. One automation cannot access the memory, file system, or network resources of another. Execution timeouts prevent runaway processes from consuming resources indefinitely.
+
+Automations operate with scoped permissions. They can only access the integrations, data, and APIs you explicitly authorize. We do not grant blanket access to your workspace.
+
+Logs from automation execution are retained for debugging and audit purposes. They contain only metadata about execution steps, not full payload contents, unless you configure otherwise.
+
+## Integration Security
+
+Third-party integrations in Grip use OAuth 2.0 where the provider supports it. We never ask for or store passwords for integrated services. OAuth tokens are encrypted at rest and transmitted over TLS.
+
+Tokens are scoped to the minimum permissions required for the integration to function. We support token refresh automatically and revoke access when you disconnect an integration.
+
+We monitor integration health and behavior. Anomalous patterns, such as unusual API call volumes or failed authentication attempts, trigger automated alerts.
+
+## API Authentication
+
+Grip API access requires valid API keys tied to your workspace. Keys are generated with high entropy and are only displayed once at creation. We hash keys in our database and cannot retrieve the original value if you lose it.
+
+API requests are rate-limited per key to prevent abuse. We log all API access for audit purposes. You can revoke a key at any time, and revocation takes effect immediately across all services.
+
+We recommend storing API keys in a secrets manager and rotating them regularly. Never commit keys to source control or share them in unsecured channels.
 
 ---
 

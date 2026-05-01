@@ -1,8 +1,38 @@
-# Ecosystem Security — Workspace
+# Ecosystem Security - Workspace
 
-This page describes how **Workspace** specifically handles ecosystem security.
+This page describes security measures specific to **Workspace**. For shared infrastructure security, see our [Ecosystem Security page](/legal/ecosystem-security).
 
-*This is a placeholder. The full Workspace-specific ecosystem security policy will be added here.*
+## Collaborative Access Controls
+
+Workspace is built for teams. That means access control must be precise and reliable. We use role-based permissions that map to what people actually do in your organization.
+
+Workspace admins can assign roles such as owner, admin, editor, or viewer. Each role carries specific permissions around creating, editing, deleting, and sharing content. Owners hold full control and can transfer ownership or delete the workspace entirely.
+
+Permissions are enforced at the API layer, not just in the user interface. A direct API request with insufficient privileges gets rejected. This prevents clientside bypass attempts.
+
+## Document-Level Permissions
+
+Individual documents within a workspace can have their own access settings. You can restrict a document to specific users or groups, even if they have broader workspace access. Private documents are invisible to everyone except explicitly invited collaborators.
+
+Permission changes take effect immediately. If you revoke access to a document, the affected user can no longer retrieve it, even if they have a previously loaded page.
+
+We log all permission changes. You can review who granted or revoked access and when. These logs are available to workspace admins.
+
+## Sharing Security
+
+Documents can be shared via links. Links can be set to view-only or editable access. You can disable a link at any time, which invalidates it immediately for anyone who has it.
+
+We do not support fully public, unauthenticated sharing. Anyone accessing a shared link must authenticate with AWFixer and have the link permissions applied to their account. There are no anonymous public documents.
+
+Shared links contain non-sequential, high-entropy tokens. They are not guessable.
+
+## Team Isolation
+
+Each workspace operates as a logical tenant. Data from one workspace does not appear in another. Database queries, search indexes, and access control checks all enforce tenant boundaries.
+
+Workspace isolation applies to backups, exports, and administrative access as well. Our operational tools require explicit workspace selection and authorization. An engineer cannot accidentally query across workspaces.
+
+If you delete a workspace, we begin a secure deletion process. Data is removed from active systems according to our retention schedule and is not recoverable through normal means.
 
 ---
 

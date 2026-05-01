@@ -1,8 +1,46 @@
-# Ecosystem Security — Account
+# Ecosystem Security - Account
 
-This page describes how **Account** specifically handles ecosystem security.
+This page describes security measures specific to **Account**. For shared infrastructure security, see our [Ecosystem Security page](/legal/ecosystem-security).
 
-*This is a placeholder. The full Account-specific ecosystem security policy will be added here.*
+## Authentication Security
+
+We use Clerk to handle authentication. Clerk specializes in identity management and implements modern security standards so we do not have to build authentication from scratch.
+
+All passwords are hashed using bcrypt with appropriate work factors. We never store passwords in plain text. Password reset links expire after a short time and can only be used once.
+
+Brute-force protection is active. After repeated failed login attempts, we temporarily lock the account and require additional verification. This slows down automated guessing attacks.
+
+## Session Management
+
+Sessions are managed via secure, HTTP-only cookies. These cookies are not accessible to JavaScript and are only transmitted over encrypted connections.
+
+Sessions expire automatically after a period of inactivity. You can end all active sessions from your account settings, which invalidates every session across every device immediately.
+
+We do not support long-lived sessions that bypass normal expiration. Security requires that sessions end when they are no longer needed.
+
+## API Key Security
+
+API keys for your account are generated with cryptographically secure random values. We only show the full key once at creation. After that, we store a hash and cannot recover the original.
+
+Keys are scoped to your account or specific workspaces, depending on what you choose. You can create multiple keys with different purposes and revoke any key independently.
+
+Revocation takes effect within seconds across all services. If you suspect a key has been exposed, revoke it immediately and generate a replacement.
+
+## Payment Data Security
+
+We do not store payment card numbers. All payment processing goes through Stripe, which maintains PCI compliance. Your card details never touch our servers.
+
+Stripe tokenizes card information and returns a reference that we use for billing. We store only the last four digits, card brand, and expiration date for display purposes. The full payment instrument lives entirely within Stripe’s secure environment.
+
+Subscription and billing data is encrypted at rest and transmitted over TLS. Access to billing records is restricted to a small number of authorized personnel and is logged.
+
+## OAuth Flows
+
+You can connect your AWFixer account to third-party services via OAuth. We use standard OAuth 2.0 flows with PKCE where supported. This prevents interception attacks during the authorization process.
+
+We request only the minimum scopes necessary for the integration. You can review and revoke third-party access from your account settings at any time. Revocation removes our access token and refreshes permissions with the provider where possible.
+
+We do not use or store OAuth tokens for purposes beyond the integration you authorized. Tokens are encrypted at rest and scoped to the specific integration that requested them.
 
 ---
 
